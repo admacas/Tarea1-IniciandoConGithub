@@ -2,6 +2,8 @@
 #define MAXLINE 1000 /* maximum input line length */
 int getline2(char line[], int maxline);
 void copy(char to[], char from[]);
+int cuenta(char cadena[]);
+int cuenta_digitos(char cadena[]);
 /* print the longest input line */
 int main()
 {
@@ -19,7 +21,9 @@ printf("Ingrese las palabras:\n");
         }
     if (max > 0) /* there was a line */
         opcion=0;
-        printf("\nLa cadena mas larga es: %s", longest);
+        printf("\nLa cadena mas larga es: %s\n", longest);
+	printf("La cadena tiene %d caracteres\n", cuenta(longest)-1);
+	printf("La cadena tiene %d dígitos\n", cuenta_digitos(longest));
 return 0;
 }
 /* getline2: read a line into s, return length */
@@ -42,5 +46,26 @@ void copy(char to[], char from[])
     i = 0;
     while ((to[i] = from[i]) != '\0')
         ++i;
+}
+int cuenta(char cadena[])
+{
+    int i;
+    i = 0;
+    while (cadena[i] != '\0')
+        ++i;
+    return i;
+}
+int cuenta_digitos(char cadena[])
+{
+    int i, digitos;
+    i = 0;
+    digitos = 0;
+    while (cadena[i] != '\0')
+    {
+        if (cadena[i] >= '0' && cadena[i] <= '9')
+            ++digitos;
+        ++i;
+    }
+    return digitos;
 }
 
